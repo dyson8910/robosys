@@ -1,11 +1,12 @@
 (defun period-iter (x)
-  (do ((i x (- i 1)))
-       ((< i 2) '.)
-       (format t ".")))
+  (do ((i 0 (+ i 1)))
+      ((>= i x))
+      (format t ".")))
+      
 
 (defun period-rec (x)
-  (if (< x 2)
-      '.
+  (if (< x 1)
+      nil
     (progn (format t ".")
 	   (period-rec (- x 1)))))
 
@@ -13,18 +14,15 @@
   (do ((counter 0))
       ((null x) counter)
       (progn (if (eql 'a (car x))
-		 (progn (setq counter (+ counter 1))
-			(setq x (cdr x)))
-	       (setq x (cdr x))))))
+		 (setq counter (+ counter 1)))
+	     (setq x (cdr x)))))
 
 	   
-(defun symbol (x count)
-  (if (null x)
-      count
-    (if (eql 'a (car x))
-	(symbol (cdr x) (+ count 1))
-      (symbol (cdr x) count))))
-
 (defun symbol-rec (x)
-  (symbol x 0))
+  (if (null x)
+      0
+    (if (eql 'a (car x))
+	(+ 1 (symbol-rec (cdr x)))
+      (symbol-rec (cdr x)))))
+
 
