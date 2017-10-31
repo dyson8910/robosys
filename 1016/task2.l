@@ -16,7 +16,7 @@
 
 (setq h1 (instance bodyset-link :init (make-cascoords) :bodies (list (make-case))))
 (setq s1 (instance bodyset-link :init (make-cascoords) :bodies (list (make-piston))))
-(setq j1 (instance linear-joint  :init :parent-link h1 :child-link s1 :axis :z))
+(setq j1 (instance linear-joint  :init :parent-link h1 :child-link s1 :axis :z :max 45 :min 0))
 
 (setq r (instance cascaded-link :init))
 (send r :assoc h1)
@@ -30,5 +30,5 @@
 (do-until-key
  (send r :angle-vector (float-vector (* 20 (- 1 (cos (/ i 100.0))))))
  (send *irtviewer* :draw-objects)
- (incf i)
- (x::window-main-one))
+ (x::window-main-one)
+ (incf i))
