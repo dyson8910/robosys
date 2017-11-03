@@ -28,11 +28,13 @@
     b1))
 
 (defun make-joint nil
-  (let (b1 b2)
+  (let (b1 b2 b3)
     (setq b1 (make-cylinder 6 50))
     (setq b2 (make-cylinder 5 10))
+    (setq b3 (make-cube 5 15 20))
     (send b2 :locate #f(0 0 40))
     (setq b1 (body- b1 b2))
+    (setq b1 (body- b1 b3))
     (send b1 :set-color :gray80)
     (send b1 :locate #f(0 0 -3))
     b1))
@@ -195,34 +197,46 @@
 
 (dotimes (i 90)
   (send r :locate (float-vector 0 0 -0.1))
-  (send *irtviewer* :draw-objects))
+  (send *irtviewer* :draw-objects)
+  (x::window-main-one)
+  )
 
 (dotimes (i 90)
   (send s :angle-vector (float-vector i i (- 0 i) (- 0 i)))
-  (send *irtviewer* :draw-objects))
+  (send *irtviewer* :draw-objects)
+  (x::window-main-one))
 
 (dotimes (i 45)
   (send r :angle-vector (float-vector i 0 0 0))
-  (send *irtviewer* :draw-objects))
+  (send *irtviewer* :draw-objects)
+  (x::window-main-one)
+  )
 
 (send r :assoc s)
 
 (dotimes (i 100)
   (send r :locate (float-vector -1 0 0))
-  (send *irtviewer* :draw-objects))
+  (send *irtviewer* :draw-objects)
+  (x::window-main-one)
+  )
 
 (dotimes (i 45)
   (send r :angle-vector (float-vector 45 i  0 0))
-  (send *irtviewer* :draw-objects))
+  (send *irtviewer* :draw-objects)
+  (x::window-main-one)
+  )
 
 (dotimes (i 10)
   (send r :angle-vector (float-vector 45 45 (* i -6) (* i -4)))
-  (send *irtviewer* :draw-objects))
+  (send *irtviewer* :draw-objects)
+  (x::window-main-one)
+  )
 
 (dotimes (i 50)
   (send r :locate (float-vector 0 1 0))
-  (send *irtviewer* :draw-objects))  
-
+  (send *irtviewer* :draw-objects)
+  (x::window-main-one)
+  )  
 
 (dotimes (i 45)
   (send r :angle-vector (float-vector (- 45 i) (- 45 i)
@@ -231,7 +245,9 @@
 				      (- 90 (* 2 i))
 				      (+ -90 (* 2 i))
 				      (+ -90 (* 2 i))))
-  (send *irtviewer* :draw-objects))
+  (send *irtviewer* :draw-objects)
+  (x::window-main-one)
+  )
 		   
 (send r :dissoc s)
 
@@ -239,4 +255,6 @@
 (dotimes (i 10)
   (send r :angle-vector (float-vector 0 0 (+ -60 (* i 6)) (+ -40 (* i 4))))
   (send r :locate #f(0 0 2))
-  (send *irtviewer* :draw-objects))
+  (send *irtviewer* :draw-objects)
+  (x::window-main-one)
+  )
