@@ -11,7 +11,7 @@
      (send b :locate #f(0 0 10))
      (send b :set-color :red)
      (setq l10 (instance bodyset-link :init (make-cascoords)
-			:bodies (list b) :name 'l10))
+n			:bodies (list b) :name 'l10))
      (setq end-coords (make-cascoords :pos #f(0 0 20)))
      (send l10 :assoc end-coords)
 
