@@ -28,11 +28,13 @@
     b1))
 
 (defun make-joint nil
-  (let (b1 b2)
+  (let (b1 b2 b3)
     (setq b1 (make-cylinder 6 50))
     (setq b2 (make-cylinder 5 10))
+    (setq b3 (make-cube 5 15 20))
     (send b2 :locate #f(0 0 40))
     (setq b1 (body- b1 b2))
+    (setq b1 (body- b1 b3))
     (send b1 :set-color :gray80)
     (send b1 :locate #f(0 0 -3))
     b1))
@@ -53,7 +55,9 @@
     b1))
     
 (defclass quickle-wiper
-  :super cascaded-link)
+  :super cascaded-link
+  )
+
 (defmethod quickle-wiper
   (:init ()
 	 (let (g1 h1 h2 h3 j1 j2 w1 l1 l2 l3 l4 l5)
